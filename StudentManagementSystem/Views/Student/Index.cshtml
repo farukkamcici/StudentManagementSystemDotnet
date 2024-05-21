@@ -1,0 +1,35 @@
+﻿@model List<Student>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1 class="text-center mb-5">Students</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Id</th>
+            <th scope="col">Class</th>
+            <th scope="col">Action</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <th scope="row">@(@Model.IndexOf(student)+1)</th>
+                <td>@student.Name</td>
+                <td class="fw-bold">@student.Id</td>
+                <td>@student.Class.ClassName</td>
+                <td><a class="btn btn-success" asp-controller="Student" asp-action="Edit" asp-route-id="@student.Id">Edit</a></td>
+                <td><a class="btn btn-danger" asp-controller="Student" asp-action="Delete" asp-route-id="@student.Id" onclick="return confirm('Do you want to delete @student.Id - @student.Name ?')">Delete</a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>
